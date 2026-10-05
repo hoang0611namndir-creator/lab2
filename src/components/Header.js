@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTheme } from '../context/ThemeContext.jsx';
+import { useTheme } from '../context/ThemeContext.js';
 
 export default function Header() {
   const { darkMode, toggleTheme } = useTheme();
@@ -18,7 +18,7 @@ export default function Header() {
     fontSize: '12px',
     borderRadius: '6px',
     border: `1px solid ${darkMode ? '#4b5563' : '#d1d5db'}`,
-    backgroundColor: darkMode ? '#374151' : '#f3f4f6',
+    backgroundColor: darkMode ? '#374151' : '#ffffff',
     color: darkMode ? '#f3f4f6' : '#374151',
     cursor: 'pointer'
   };

@@ -1,31 +1,29 @@
 import React from 'react';
-import { useTheme } from '../context/ThemeContext.jsx';
+import { useTheme } from '../context/ThemeContext.js';
 
-export default function MovieItem({ task, onFav, onDetail }) {
+export default function MovieItem({ movie, onFav, onDetail }) {
   const { darkMode } = useTheme();
 
   const itemStyle = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '8px 12px',
+    padding: '10px 12px',
     marginBottom: '8px',
     borderRadius: '6px',
     border: `1px solid ${darkMode ? '#374151' : '#e5e7eb'}`,
-    backgroundColor: darkMode ? '#374151' : '#f9fafb'
+    backgroundColor: darkMode ? '#1f2937' : '#f9fafb'
   };
 
   const textStyle = {
     fontSize: '14px',
-    textDecoration: task.completed ? 'line-through' : 'none',
-    color: task.completed
-      ? darkMode ? '#9ca3af' : '#6b7280'
-      : darkMode ? '#f3f4f6' : '#111827'
+    fontWeight: movie.isFavorite ? 'bold' : 'normal',
+    color: darkMode ? '#f3f4f6' : '#111827'
   };
 
   const detailBtnStyle = {
     fontSize: '12px',
-    color: '#074dff',
+    color: '#3b82f6',
     border: 'none',
     background: 'transparent',
     cursor: 'pointer',
@@ -37,13 +35,16 @@ export default function MovieItem({ task, onFav, onDetail }) {
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         <input
           type="checkbox"
-          checked={task.completed}
-          onChange={() => onFav(task.id)}
+          checked={!!movie.isFavorite}
+          onChange={() => onFav(movie.id)}
           style={{ cursor: 'pointer' }}
+          title="Yêu thích"
         />
-        <span style={textStyle}>{task.title}</span>
+        <span style={textStyle}>
+          {movie.title} ({movie.year})
+        </span>
       </div>
-      <button onClick={() => onDetail(task.id)} style={detailBtnStyle}>
+      <button onClick={() => onDetail(movie)} style={detailBtnStyle}>
         Chi tiết
       </button>
     </li>
